@@ -1,0 +1,558 @@
+/* Define CSS Variables for Consistency */
+:root {
+  --primary-color: #ff6f61; /* Petverse coral */
+  --secondary-color: #4a8c8c; /* Teal for buttons */
+  --accent-color: #f4a261; /* Orange for CTAs */
+  --dark-bg: #1a3c34; /* Dark teal for sections */
+  --light-bg: #f5f5f5; /* Light background */
+  --text-dark: #333;
+  --text-light: #fff;
+  --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  --transition: all 0.3s ease;
+}
+
+/* Base Styles */
+.training-videos-container {
+  font-family: 'Poppins', sans-serif; /* Modern font */
+  color: var(--text-dark);
+  background-color: var(--light-bg);
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+}
+
+/* Hero Section */
+.intro-banner {
+  position: relative;
+  min-height: 450px;
+  overflow: hidden;
+  text-align: center;
+  background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+  height: 650px;
+}
+
+.intro-video,
+.intro-fallback {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+}
+
+.intro-video:invalid + .intro-fallback,
+.intro-video:not(media-controls) + .intro-fallback {
+  display: block;
+}
+
+.intro-overlay {
+  position: absolute;
+  inset: 0; /* Shorthand for top, left, right, bottom */
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 2;
+}
+
+.intro-content {
+  position: relative;
+  z-index: 3;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 60px 20px;
+  color: var(--text-light);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 450px;
+}
+
+.intro-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5);
+}
+
+.intro-tagline {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  max-width: 650px;
+  opacity: 0.9;
+}
+.why-watch-title{
+  text-align: center;
+}
+.training-videos-section-title{
+  text-align: center;
+  padding-top: 30px;
+  color: white;
+}
+/* Button Styles (Reusable) */
+.btn {
+  padding: 12px 30px;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: var(--transition);
+  color: var(--text-light);
+}
+
+.btn-primary {
+  background-color: var(--secondary-color);
+}
+
+.btn-primary:hover {
+  background-color: #367272;
+  transform: scale(1.05);
+}
+
+.btn-cta {
+  background-color: var(--accent-color);
+}
+
+.btn-cta:hover {
+  background-color: #e07a5f;
+  transform: scale(1.05);
+}
+
+/* Section Styles (Reusable) */
+.section {
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.section-title {
+  font-size: 1.75rem;
+  color: var(--dark-bg);
+  margin-bottom: 1.5rem;
+}
+
+/* Why Watch Section */
+.why-watch-section {
+  background-color: #fff;
+}
+
+.why-watch-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.why-watch-item {
+  background: linear-gradient(145deg, #f9f9f9, #e0e8e0);
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: var(--shadow);
+  transition: var(--transition);
+}
+
+.why-watch-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.why-watch-icon {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  color: var(--primary-color);
+}
+
+.why-watch-item h3 {
+  font-size: 1.25rem;
+  color: var(--dark-bg);
+  margin-bottom: 0.5rem;
+}
+
+.why-watch-item p {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+/* Featured Video Section */
+.featured-video-section {
+  background: linear-gradient(145deg, #e0e8e0, #d4e0d4);
+  height: 950px;
+}
+.training-videos-featured-section-title{
+  text-align: center;
+  padding: 20px;
+  font-size: 2rem;
+}
+
+.featured-video-card {
+  max-width: 800px;
+  margin: 0 auto;
+  background-color: #fff;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+.featured-thumbnail {
+  position: relative;
+  cursor: pointer;
+}
+
+.featured-thumbnail-image,
+.thumbnail-image {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.play-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: var(--transition);
+}
+
+.featured-thumbnail:hover .play-overlay {
+  opacity: 1;
+}
+
+.play-icon {
+  font-size: 3rem;
+  color: var(--text-light);
+}
+
+.duration-badge {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: var(--text-light);
+  padding: 4px 8px;
+  border-radius: 5px;
+  font-size: 0.8rem;
+}
+
+.featured-info,
+.video-info {
+  padding: 15px;
+  text-align: left;
+}
+
+.featured-title,
+.video-title {
+  font-size: 1.1rem;
+  color: var(--dark-bg);
+  margin-bottom: 0.5rem;
+}
+
+.featured-description,
+.video-description {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+/* Tabs */
+.video-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  padding: 1rem;
+  background-color: #fff;
+}
+
+.tab-button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 20px;
+  background-color: #e0e8e0;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: var(--transition);
+}
+
+.tab-button.active {
+  background-color: var(--secondary-color);
+  color: var(--text-light);
+}
+
+.tab-button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+/* Filter Section */
+.training-videos-filter-section {
+  padding: 20px;
+  background-color: #fff;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.search-form,
+.filter-controls {
+  display: flex;
+  gap: 10px;
+}
+
+.search-input,
+.filter-select {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+/* Video Grid */
+.video-grid {
+  padding: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.video-card {
+  background-color: #fff;
+  border-radius: 15px;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  transition: var(--transition);
+  animation: fadeIn 0.5s ease-out;
+}
+
+.video-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.video-actions {
+  display: flex;
+  gap: 10px;
+  padding: 0 15px 15px;
+}
+
+.action-button {
+  padding: 8px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: var(--transition);
+}
+
+.like {
+  background-color: #e0e8e0;
+  color: var(--dark-bg);
+  z-index: 1;
+}
+
+.like.liked {
+  background-color: var(--secondary-color);
+  color: var(--text-light);
+}
+
+.bookmark {
+  background-color: var(--accent-color);
+  color: var(--text-light);
+  z-index: 1;
+  
+}
+
+.share {
+  background-color: #6c757d;
+  color: var(--text-light);
+  z-index: 1;
+}
+
+.action-button:hover {
+  opacity: 0.9;
+}
+
+/* Training Tips & Resources (Combined Styling) */
+.training-tips-section,
+.resources-section {
+  background: #1a3c34;
+  height: 250px;
+}
+
+.training-tips-list,
+.resources-list {
+  list-style: none;
+  padding: 0;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.training-tips-list li,
+.resources-list li {
+  font-size: 1rem;
+  color:white;
+  margin-bottom: 0.5rem;
+  position: relative;
+  padding-left: 1.5rem;
+}
+
+.training-tips-list li:before {
+  content: '🐾'; /* Paw print bullet */
+  position: absolute;
+  left: 0;
+  color: var(--primary-color);
+}
+
+.resources-list a {
+  color: var(--secondary-color);
+  text-decoration: none;
+}
+
+.resources-list a:hover {
+  text-decoration: underline;
+}
+
+/* Success Stories */
+.success-stories-section {
+  background-color: #fff;
+}
+
+.success-story {
+  background: linear-gradient(145deg, #f9f9f9, #e0e8e0);
+  padding: 15px;
+  border-radius: 15px;
+  margin: 0 auto 15px;
+  max-width: 600px;
+  box-shadow: var(--shadow);
+}
+
+.success-story p {
+  font-size: 1rem;
+  color: #666;
+}
+
+/* CTA Sections */
+.volunteer-cta-section,
+.cta-banner {
+  background-color: var(--dark-bg);
+  color: var(--text-light);
+}
+
+.cta-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.cta-title {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.cta-content p {
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+  opacity: 0.9;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Loading State */
+.training-videos-loading {
+  text-align: center;
+  padding: 40px;
+}
+
+.training-videos-spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid var(--secondary-color);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 15px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .intro-title { font-size: 2rem; }
+  .intro-tagline { font-size: 1rem; }
+  .why-watch-grid,
+  .video-grid { grid-template-columns: 1fr; }
+  .section-title { font-size: 1.5rem; }
+}
+
+@media (max-width: 480px) {
+  .intro-title { font-size: 1.5rem; }
+  .intro-tagline { font-size: 0.9rem; }
+  .section-title { font-size: 1.25rem; }
+  .btn { padding: 10px 20px; }
+}
+.video-player-wrapper {
+  position: relative;
+  width: 100%;
+  height: 225px; /* Match the iframe height for featured video */
+}
+
+.video-player-wrapper iframe,
+.video-player-wrapper .featured-thumbnail,
+.video-player-wrapper .video-thumbnail {
+  width: 100%;
+  height: 100%;
+}
+
+/* For grid videos, adjust height */
+.video-card .video-player-wrapper {
+  height: 315px; /* Match the iframe height for grid videos */
+}
+
+.featured-thumbnail,
+.video-thumbnail {
+  position: relative;
+  cursor: pointer;
+}
+
+.featured-thumbnail-image,
+.thumbnail-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.play-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.play-icon {
+  font-size: 50px;
+  color: white;
+}
+
+.duration-badge {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-size: 12px;
+}

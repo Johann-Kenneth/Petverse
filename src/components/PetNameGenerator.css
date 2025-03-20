@@ -1,0 +1,360 @@
+.pet-name-generator-container {
+    font-family: Arial, sans-serif;
+    color: #333;
+    margin: 0;
+   
+    background-color: #fff;
+    position: relative;
+    min-height: calc(100vh - 120px); /* Account for Navbar (60px) and Footer (60px) */
+  }
+  
+  /* Introductory Banner */
+  .pet-name-intro-banner {
+    background: linear-gradient(135deg, #1a3c34 0%, #f4a261 100%);
+  
+    padding: 40px 20px;
+    text-align: center;
+    margin-bottom: 30px;
+    color: #fff;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  .intro-content h1 {
+    font-size: 42px;
+    margin-bottom: 10px;
+  }
+  
+  .intro-tagline {
+    font-size: 18px;
+    margin-bottom: 20px;
+    color: #e0e8e0;
+  }
+  
+  .intro-cta-button {
+    background-color: #fff;
+    color: #1a3c34;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+  }
+  
+  .intro-cta-button:hover {
+    background-color: #e0e8e0;
+    color: #f4a261;
+    transform: scale(1.05);
+  }
+  
+  /* Why Use Section */
+  .why-use-section {
+    margin-bottom: 40px;
+    text-align: center;
+  }
+  
+  .why-use-title {
+    font-size: 28px;
+    color: #1a3c34;
+    margin-bottom: 20px;
+  }
+  
+  .why-use-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+  }
+  
+  .why-use-item {
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+  }
+  
+  .why-use-item:hover {
+    transform: translateY(-5px);
+  }
+  
+  .why-use-icon {
+    font-size: 36px;
+    display: block;
+    margin-bottom: 10px;
+    color: #f4a261;
+  }
+  
+  .why-use-item h3 {
+    font-size: 20px;
+    color: #1a3c34;
+    margin-bottom: 10px;
+  }
+  
+  .why-use-item p {
+    font-size: 16px;
+    color: #666;
+  }
+  
+  /* Generator Section */
+  .generator-section {
+    margin-bottom: 40px;
+  }
+  
+  .card {
+    background-color: #f9f9f9;
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  
+  .card h2 {
+    font-size: 28px;
+    color: #1a3c34;
+    margin-bottom: 20px;
+  }
+  
+  .input-group {
+    position: relative;
+    margin-bottom: 20px;
+  }
+  
+  .input-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+  }
+  
+  .input-group input:focus {
+    border-color: #f4a261;
+    outline: none;
+  }
+  
+  .input-group label {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+    color: #999;
+    font-size: 16px;
+    pointer-events: none;
+    transition: all 0.3s ease;
+  }
+  
+  .input-group input:focus + label,
+  .input-group input:not(:placeholder-shown) + label {
+    top: -10px;
+    left: 10px;
+    font-size: 12px;
+    color: #f4a261;
+    background-color: #f9f9f9;
+    padding: 0 5px;
+  }
+  
+  .generate-button {
+    background-color: #f4a261;
+    color: #fff;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  .generate-button:hover {
+    background-color: #e07a5f;
+    transform: scale(1.05);
+  }
+  
+  .results {
+    margin-top: 20px;
+  }
+  
+  .results h3 {
+    font-size: 20px;
+    color: #1a3c34;
+    margin-bottom: 10px;
+  }
+  
+  .results ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .results li {
+    font-size: 16px;
+    color: #666;
+    padding: 10px;
+    background-color: #e0e8e0;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    transition: transform 0.3s ease;
+  }
+  
+  .results li:hover {
+    transform: translateX(5px);
+  }
+  
+  /* Naming Tips Section */
+  .naming-tips-section {
+    margin-bottom: 40px;
+    text-align: center;
+  }
+  
+  .section-title {
+    font-size: 24px;
+    color: #1a3c34;
+    margin-bottom: 20px;
+  }
+  
+  .tips-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+  }
+  
+  .tip-item {
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .tip-icon {
+    font-size: 24px;
+    color: #f4a261;
+  }
+  
+  .tip-item p {
+    font-size: 16px;
+    color: #666;
+    margin: 0;
+  }
+  
+  /* Success Stories Section */
+  .success-stories-section {
+    margin-bottom: 40px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .success-story {
+    margin-bottom: 15px;
+    padding: 10px;
+    background-color: #e0e8e0;
+    border-radius: 5px;
+  }
+  
+  .success-story p {
+    font-size: 16px;
+    color: #666;
+  }
+  
+  /* Resources Section */
+  .resources-section {
+    margin-bottom: 40px;
+    padding: 20px;
+    text-align: center;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .resources-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .resources-list li {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 10px;
+    position: relative;
+    padding-left: 20px;
+  }
+  
+  .resources-list li a {
+    color: #f4a261;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  .resources-list li a:hover {
+    color: #e07a5f;
+  }
+  
+  /* CTA Banner */
+  .cta-banner {
+    padding: 30px 20px;
+    background-color: #1a3c34;
+    text-align: center;
+    margin-bottom: 80px;
+    border-radius: 10px;
+  }
+  
+  .cta-content h3 {
+    font-size: 24px;
+    color: #fff;
+    margin-bottom: 15px;
+  }
+  
+  .cta-content p {
+    font-size: 16px;
+    color: #e0e8e0;
+    margin-bottom: 20px;
+  }
+  
+  .cta-button {
+    background-color: #f4a261;
+    color: #fff;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  .cta-button:hover {
+    background-color: #e07a5f;
+    transform: scale(1.05);
+  }
+  .video-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    z-index: -1; /* Send it behind other elements */
+  }
+  
+  .video-container video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Cover the entire screen without distortion */
+  }
+  /* PetNameGenerator.css */
+.error-message {
+  color: #dc3545;
+  font-size: 0.9rem;
+  margin-top: 10px;
+  text-align: center;
+}
+
+.generate-button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+  

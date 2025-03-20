@@ -1,0 +1,227 @@
+/* authStyles.css */
+body {
+  font-family: 'Arial', sans-serif;
+  /* Remove static background image */
+  /* background-image: url('./images/loginbg.jpg'); */
+  /* background-size: cover; */
+  /* background-position: center; */
+  min-height: 100vh;
+  margin: 0;
+  overflow: hidden;
+}
+
+.auth-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  animation: fadeIn 1s ease;
+  position: relative;
+  z-index: 1;
+}
+.auth-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #000; /* Fallback background */
+  z-index: 0;
+  object-fit: cover;
+}
+
+.auth-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+/* White fade effect */
+  z-index: 1;
+}
+.auth-card {
+  /* background: rgba(255, 255, 255, 0.9); */
+  border-radius: 20px;
+  padding: 30px;
+  width: 550px;
+  max-width: 400px;
+  /* box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3); */
+  text-align: center;
+  animation: slideIn 0.8s ease;
+  position: relative;
+  z-index: 2;
+  background: rgba(255, 255, 255, 0.9);
+}
+
+h2 {
+  margin-bottom: 15px;
+  color: #444;
+}
+
+.input-container {
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.styled-input {
+  width: 300px;
+  padding: 10px 15px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  outline: none;
+  transition: all 0.3s;
+  font-size: 16px;
+}
+
+.styled-input:focus {
+  border-color: #ff9800;
+  box-shadow: 0 0 8px rgba(255, 152, 0, 0.5);
+}
+
+.auth-button {
+  background: #1a3c34;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background 0.3s;
+  width: 335px;
+  margin: 10px 0;
+  font-size: 16px;
+  display: block;
+}
+
+.auth-button:hover {
+  background: #e68900;
+}
+
+.signin-redirect {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  justify-content: center;
+}
+
+.link-button {
+  background: none;
+  border: none;
+  color: #337666;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 16px;
+  transition: color 0.3s, transform 0.3s;
+}
+
+.link-button:hover {
+  color: #e05850;
+  transform: scale(1.05);
+}
+
+.error-message {
+  color: red;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* .pet-theme .auth-card {
+  background-image: url('https://images.unsplash.com/photo-1574158622682-e40e69881006');
+  background-size: cover;
+  background-position: center;
+  color: white;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+} */
+
+.pet-theme h2 {
+  color: #000000;
+}
+
+.pet-theme .styled-input {
+  background: rgba(255, 255, 255, 0.7);
+}
+
+.pet-theme .auth-button {
+  background: #1a3c34;
+}
+
+.pet-theme .auth-button:hover {
+  background: #337666;
+}
+
+@media (max-width: 768px) {
+  .auth-card {
+    width: 85%;
+  }
+}
+
+/* Landing Page Styles */
+
+
+/* Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.signup-link {
+  color: #ff6f61;
+  cursor: pointer;
+  transition: color 0.3s, transform 0.3s;
+  font-weight: bold;
+}
+
+.signup-link:hover {
+  color: #e05850;
+  transform: scale(1.05);
+}
+
+.google-signin-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  color: #444;
+  border: 1px solid #ddd;
+  border-radius: 25px;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+  width: 300px;
+  margin-top: 10px;
+}
+
+.google-signin-button:hover {
+  transform: scale(1.03);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+.google-logo {
+  width: 20px;
+  margin-right: 10px;
+}

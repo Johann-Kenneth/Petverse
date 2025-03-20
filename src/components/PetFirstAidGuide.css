@@ -1,0 +1,191 @@
+/* src/components/PetFirstAidGuide.css */
+.pet-first-aid-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: 'Arial', sans-serif;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 0.5s ease-in;
+    margin-top: 50px;
+  }
+  
+  h1 {
+    text-align: center;
+    color: #2c3e50;
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+  }
+  
+  .pet-first-aid-container > p {
+    text-align: center;
+    color: #7f8c8d;
+    font-style: italic;
+    margin-bottom: 20px;
+  }
+  
+  .search-bar {
+    margin-bottom: 20px;
+    text-align: center;
+    animation: slideDown 0.5s ease-out;
+  }
+  
+  .search-bar input {
+    padding: 10px;
+    width: 100%;
+    max-width: 400px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .search-bar input:focus {
+    border-color: #3498db;
+    box-shadow: 0 0 5px rgba(52, 152, 219, 0.3);
+  }
+  
+  .first-aid-tips, .first-aid-checklist {
+    margin-top: 30px;
+  }
+  
+  h2 {
+    color: #e74c3c;
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #e74c3c;
+    padding-bottom: 5px;
+    animation: fadeIn 0.5s ease-in;
+  }
+  
+  .tip-item {
+    background-color: #ffffff;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .tip-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  .tip-item h3 {
+    color: #34495e;
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .accordion-toggle {
+    font-size: 1rem;
+    color: #e74c3c;
+  }
+  
+  .tip-details {
+    list-style-type: disc;
+    padding-left: 20px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+  }
+  
+  .tip-item.active .tip-details {
+    max-height: 200px; /* Adjust based on content height */
+  }
+  
+  .tip-details li {
+    color: #2c3e50;
+    font-size: 1rem;
+    line-height: 1.5;
+    margin-bottom: 5px;
+    animation: fadeIn 0.5s ease-in;
+  }
+  
+  .first-aid-checklist p {
+    color: #7f8c8d;
+    font-style: italic;
+    margin-bottom: 10px;
+  }
+  
+  .print-button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    color: #ffffff;
+    background-color: #3498db;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 15px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+  
+  .print-button:hover {
+    background-color: #2980b9;
+    transform: scale(1.05);
+  }
+  
+  .first-aid-checklist ul {
+    list-style-type: square;
+    padding-left: 20px;
+  }
+  
+  .first-aid-checklist li {
+    color: #2c3e50;
+    font-size: 1rem;
+    line-height: 1.5;
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+    animation: fadeIn 0.5s ease-in;
+  }
+  
+  .first-aid-checklist li input {
+    margin-right: 10px;
+  }
+  
+  .first-aid-checklist li.checked {
+    text-decoration: line-through;
+    color: #95a5a6;
+  }
+  
+  .kit-status {
+    text-align: center;
+    color: #2c3e50;
+    font-weight: bold;
+    margin-top: 10px;
+    animation: fadeIn 0.5s ease-in;
+  }
+  
+  .disclaimer {
+    margin-top: 30px;
+    padding: 15px;
+    background-color: #ffe6e6;
+    border-radius: 5px;
+    text-align: center;
+    animation: fadeIn 0.5s ease-in;
+  }
+  
+  .disclaimer p {
+    color: #e74c3c;
+    font-size: 0.9rem;
+    font-style: italic;
+  }
+  
+  /* Animations */
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  @keyframes slideDown {
+    from { transform: translateY(-20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }

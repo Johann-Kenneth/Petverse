@@ -1,0 +1,436 @@
+/* Navbar.css */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.navbar-logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #000000; /* Changed from #fff to #000000 */
+  text-decoration: none;
+}
+
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 20px;
+}
+
+.nav-link {
+  font-size: 1rem;
+  color: #000000;
+  cursor: pointer;
+  transition: color 0.3s;
+  position: relative;
+  padding-bottom: 5px;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: orange;
+  transition: width 0.3s ease-in-out;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+.nav-link:hover {
+  color: orange;
+}
+
+.dropdown {
+  position: relative;
+}
+
+.dropdown-wrapper {
+  display: inline-block;
+}
+
+.dropbtn {
+  font-size: 1rem;
+  color: #000000;
+  cursor: pointer;
+  position: relative;
+  padding-bottom: 5px;
+}
+
+.dropbtn::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: orange; /* Changed from #000000 to orange */
+  transition: width 0.3s ease-in-out;
+}
+
+.dropbtn:hover {
+  color: orange; /* Added to match nav-link hover */
+}
+
+.dropbtn:hover::after {
+  width: 100%;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #fff;
+  min-width: 160px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  z-index: 1;
+  border-radius: 5px;
+  padding: 10px 0;
+}
+
+.dropdown-wrapper:hover .dropdown-content,
+.dropdown-wrapper .dropdown-content.active {
+  display: block;
+}
+
+.dropdown-content span {
+  display: block;
+  padding: 10px 15px;
+  color: #333;
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+.dropdown-content span:hover {
+  background-color: #e0e0e0; /* Darker gray for better contrast */
+  color: #000; /* Slightly darker text on hover */
+}
+
+.profile-menu {
+  position: relative;
+}
+
+.username-container {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  padding: 5px 10px;
+  border-radius: 20px;
+  background-color: #f8f9fa;
+}
+
+.card-front {
+  display: flex;
+  align-items: center;
+}
+
+.profile-name {
+  font-size: 1rem;
+  color: #333;
+}
+
+.card-back {
+  display: none;
+}
+
+.dropdown-profile {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: #fff;
+  width: 250px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  padding: 15px;
+  z-index: 1;
+}
+
+.profile-header {
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.profile-pic {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+
+.profile-name {
+  font-size: 1.2rem;
+  margin: 5px 0;
+}
+
+.profile-bio {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.dropdown-menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.dropdown-menu li {
+  padding: 10px;
+  font-size: 0.9rem;
+  color: #333;
+  cursor: pointer;
+}
+
+.dropdown-menu li:hover {
+  background-color: #f1f1f1;
+}
+
+.logout-btn {
+  color: #dc3545;
+}
+
+.social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.social-link {
+  font-size: 1.2rem;
+  color: #666;
+  text-decoration: none;
+}
+
+.guest-message {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.welcome-text {
+  font-size: 1rem;
+  color: #666;
+}
+
+.signin-button,
+.signup-button {
+  padding: 8px 15px;
+  border: none;
+  border-radius: 5px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.signin-button {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.signin-button:hover {
+  background-color: #0056b3;
+}
+
+.signup-button {
+  background-color: #28a745;
+  color: #fff;
+}
+
+.signup-button:hover {
+  background-color: #218838;
+}
+
+/* Hamburger Menu */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+}
+
+.bar {
+  width: 25px;
+  height: 3px;
+  background-color: #333;
+  transition: all 0.3s ease;
+}
+
+.bar.open:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.bar.open:nth-child(2) {
+  opacity: 0;
+}
+
+.bar.open:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .hamburger {
+    display: flex;
+  }
+
+  .navbar-right {
+    position: absolute;
+    top: 70px;
+    right: 0;
+    width: 100%;
+    background-color: #fff;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    transform: translateY(-100%);
+    transition: transform 0.3s ease-in-out;
+    display: none;
+  }
+
+  .navbar-right.mobile-open {
+    display: flex;
+    transform: translateY(0);
+  }
+
+  .nav-links {
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+  }
+
+  .nav-link {
+    font-size: 1.1rem;
+    padding: 10px 0;
+    width: 100%;
+    position: relative;
+    padding-bottom: 5px;
+  }
+
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: orange;
+    transition: width 0.3s ease-in-out;
+  }
+
+  .nav-link:hover::after {
+    width: 100%;
+  }
+
+  .dropdown-wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .dropbtn {
+    font-size: 1.1rem;
+    padding: 10px 0;
+    position: relative;
+    padding-bottom: 5px;
+  }
+
+  .dropbtn::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: orange;
+    transition: width 0.3s ease-in-out;
+  }
+
+  .dropbtn:hover::after {
+    width: 100%;
+  }
+
+  .dropdown-content {
+    position: static;
+    box-shadow: none;
+    background-color: #f9f9f9;
+    padding-left: 20px;
+    border-left: 2px solid #e0e0e0; /* Added for distinction */
+  }
+
+  .dropdown-content span {
+    padding: 8px 0;
+  }
+
+  .guest-message {
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+  }
+
+  .welcome-text {
+    font-size: 1.1rem;
+  }
+
+  .signin-button,
+  .signup-button {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+  }
+
+  .profile-menu {
+    width: 100%;
+  }
+
+  .username-container {
+    width: 100%;
+    justify-content: space-between;
+    padding: 10px;
+  }
+
+  .dropdown-profile {
+    position: static;
+    width: 100%;
+    box-shadow: none;
+    padding: 10px 0;
+  }
+
+  .dropdown-menu li {
+    padding: 10px 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar {
+    padding: 10px 15px;
+  }
+
+  .navbar-logo {
+    font-size: 1.2rem;
+  }
+
+  .nav-link,
+  .dropbtn {
+    font-size: 1rem;
+  }
+
+  .dropdown-content span {
+    font-size: 0.9rem;
+  }
+}

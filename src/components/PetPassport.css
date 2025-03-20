@@ -1,0 +1,128 @@
+/* src/components/PetPassport.css */
+.pet-passport-container {
+    max-width: 800px;
+    margin: 0 auto;
+    margin-top: 40px;
+    padding: 20px;
+    font-family: 'Arial', sans-serif;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  h1 {
+    text-align: center;
+    color: #2c3e50;
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+  }
+  
+  .pet-passport-container > p {
+    text-align: center;
+    color: #7f8c8d;
+    font-style: italic;
+    margin-bottom: 20px;
+  }
+  
+  .pet-passport-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  }
+  
+  .form-group {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .form-group label {
+    font-weight: bold;
+    color: #34495e;
+    margin-bottom: 5px;
+  }
+  
+  .form-group input,
+  .form-group textarea {
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+    transition: border-color 0.3s ease;
+  }
+  
+  .form-group input:focus,
+  .form-group textarea:focus {
+    border-color: #3498db;
+    box-shadow: 0 0 5px rgba(52, 152, 219, 0.3);
+  }
+  
+  .form-group textarea {
+    resize: vertical;
+  }
+  
+  button {
+    padding: 12px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #ffffff;
+    background-color: #3498db;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  button:disabled {
+    background-color: #95a5a6;
+    cursor: not-allowed;
+  }
+  
+  button:hover:not(:disabled) {
+    background-color: #2980b9;
+  }
+  
+  .error-message {
+    color: #c0392b;
+    background-color: #ffe6e6;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    margin-bottom: 15px;
+  }
+  
+  .success-message {
+    color: #27ae60;
+    background-color: #e6ffed;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    margin-bottom: 15px;
+  }
+  
+  .pet-passport-details {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: #ecf0f1;
+    border-radius: 8px;
+  }
+  
+  .pet-passport-details h2 {
+    color: #34495e;
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+  }
+  
+  .pet-passport-details p {
+    color: #2c3e50;
+    font-size: 1rem;
+    margin: 5px 0;
+  }
+  
+  .pet-passport-details p strong {
+    color: #34495e;
+  }

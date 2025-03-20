@@ -1,0 +1,48 @@
+/* src/components/Loading.css */
+.loading-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(255, 255, 255, 0.9);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    animation: fadeIn 0.5s ease-in;
+  }
+  
+  .pet-spinner {
+    width: 100px;
+    height: 100px;
+    animation: bounce 1s infinite;
+  }
+  
+  .spinner {
+    animation: spin 1s linear infinite;
+  }
+  
+  .loading-text {
+    margin-top: 10px;
+    font-family: Arial, sans-serif;
+    font-size: 18px;
+    color: #1a3c34;
+    font-weight: 600;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  @keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+  
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }

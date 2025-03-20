@@ -1,0 +1,663 @@
+/* Dashboard.css */
+:root {
+  --primary-dark: #1a3c34;
+  --primary-orange: #f4a261;
+  --secondary-orange: #e07a5f;
+  --light-gray: #e0e8e0;
+  --off-white: #f9f9f9;
+  --gray: #666;
+  --border-gray: #ccc;
+  --accent-teal: #4a8c8c;
+  --glass-bg: rgba(255, 255, 255, 0.2);
+}
+
+.dash-dashboard-container {
+  font-family: Arial, sans-serif;
+  color: #333;
+  margin: 0;
+  background-color: var(--off-white);
+  min-height: calc(100vh - 120px);
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Hero Section */
+.dash-hero-section {
+  position: relative;
+  text-align: center;
+  color: #fff;
+  padding: 40px 20px;
+  border-radius: 15px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  height: 655px;
+}
+
+.dash-video-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+.dash-hero-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.dash-video-container::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+
+.dash-hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 600px;
+  margin: 0 auto;
+  background: none !important;
+  padding: 20px;
+}
+
+.dash-hero-title {
+  font-size: 48px;
+  margin-bottom: 15px;
+}
+
+.dash-hero-tagline,
+.dash-hero-description {
+  font-size: 20px;
+  margin-bottom: 25px;
+  color: var(--light-gray);
+}
+
+.dash-hero-cta-button {
+  background-color: #fff;
+  color: var(--primary-dark);
+  border: none;
+  padding: 12px 30px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+.dash-hero-cta-button:hover {
+  background-color: var(--light-gray);
+  color: var(--primary-orange);
+  transform: scale(1.05);
+}
+
+.dash-fallback-image {
+  display: none;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Why Choose Us Section */
+.dash-why-choose-section,
+.dash-services-section,
+.dash-about-section,
+.dash-testimonials-section,
+.dash-cta-banner {
+  margin-bottom: 40px;
+  padding: 20px;
+}
+
+.dash-section-title {
+  font-size: 28px;
+  color: var(--primary-dark);
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.dash-why-choose-grid,
+.dash-testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.dash-why-choose-card,
+.dash-testimonial-card {
+  background-color: var(--off-white);
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.dash-why-choose-card:hover,
+.dash-testimonial-card:hover {
+  transform: scale(1.05);
+}
+
+.dash-why-choose-icon {
+  font-size: 36px;
+  display: block;
+  margin-bottom: 10px;
+  color: var(--accent-teal);
+}
+
+/* What We Offer Section (Carousel) */
+.dash-services-section {
+  position: relative;
+  background: linear-gradient(135deg, var(--off-white), #f5f7fa);
+}
+
+.dash-services-carousel {
+  position: relative;
+  overflow: hidden;
+  padding: 20px 0;
+}
+
+.dash-services-slide {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding: 20px 0;
+  -webkit-overflow-scrolling: touch;
+}
+
+.dash-service-card {
+  min-width: 300px;
+  height: 400px;
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 20px;
+  color: #333;
+  text-align: center;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+}
+
+.dash-service-card::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(74, 140, 140, 0.1) 0%, transparent 70%);
+  z-index: 0;
+  transition: transform 0.6s ease;
+}
+
+.dash-service-card:hover::before {
+  transform: translate(50%, 50%);
+}
+
+.dash-service-icon {
+  width: 100px;
+  height: 100px;
+  margin: 0 auto 15px;
+  border: 2px solid var(--accent-teal);
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  z-index: 1;
+}
+
+.dash-service-icon img {
+  width: 60px;
+  height: 60px;
+  filter: none;
+}
+
+.dash-service-card h3 {
+  font-size: 22px;
+  margin-bottom: 10px;
+  z-index: 1;
+}
+
+.dash-service-card p {
+  font-size: 16px;
+  margin-bottom: 20px;
+  flex-grow: 1;
+  z-index: 1;
+}
+
+.dash-service-cta-button {
+  background-color: var(--accent-teal);
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  width: 100%;
+  z-index: 1;
+}
+
+.dash-service-cta-button:hover {
+  background-color: #3a6c6c;
+  transform: scale(1.05);
+}
+
+.dash-service-card:hover {
+  transform: perspective(1000px) rotateX(5deg) rotateY(-5deg);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+}
+
+/* 3D Tilt Effect */
+.dash-service-card {
+  transform-style: preserve-3d;
+}
+
+.dash-carousel-prev,
+.dash-carousel-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: var(--glass-bg);
+  backdrop-filter: blur(10px);
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  font-size: 18px;
+  z-index: 2;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  color: var(--accent-teal);
+}
+
+.dash-carousel-prev {
+  left: 10px;
+}
+
+.dash-carousel-next {
+  right: 10px;
+}
+
+.dash-carousel-prev:hover,
+.dash-carousel-next:hover {
+  background-color: rgba(255, 255, 255, 0.4);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.dash-carousel-dots {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+  z-index: 2;
+}
+
+.dash-dot {
+  width: 10px;
+  height: 10px;
+  background-color: var(--light-gray);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.dash-dot.active {
+  background-color: var(--accent-teal);
+  transform: scale(1.5);
+}
+
+.dash-dot:hover {
+  background-color: #3a6c6c;
+}
+
+/* About Section */
+.dash-about-section {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.dash-about-content {
+  flex: 1;
+}
+
+.dash-about-image {
+  flex: 1;
+}
+
+.dash-about-image img {
+  max-width: 100%;
+  border-radius: 10px;
+}
+
+.dash-highlight-text {
+  font-style: italic;
+  color: var(--gray);
+  margin: 10px 0;
+}
+
+.dash-about-more-btn {
+  background-color: var(--primary-dark);
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.dash-about-more-btn:hover {
+  background-color: var(--primary-orange);
+  transform: scale(1.05);
+}
+
+/* CTA Banner */
+.dash-cta-banner {
+  background-color: var(--primary-dark);
+  border-radius: 10px;
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.dash-cta-title {
+  font-size: 28px;
+  color: var(--light-gray);
+  margin-bottom: 15px;
+}
+
+.dash-cta-content p {
+  font-size: 16px;
+  color: var(--light-gray);
+  margin-bottom: 20px;
+}
+
+.dash-cta-button {
+  background-color: var(--primary-orange);
+  color: #fff;
+  border: none;
+  padding: 12px 30px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+.dash-cta-button:hover {
+  background-color: var(--secondary-orange);
+  transform: scale(1.05);
+}
+
+/* Popup */
+.dash-popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1001;
+  visibility: hidden; /* Hidden by default */
+  opacity: 0;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.dash-popup-overlay.active {
+  visibility: visible;
+  opacity: 1;
+}
+
+.dash-popup-content {
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 500px;
+  width: 90%;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 1002;
+  position: relative;
+  transform: scale(0.95);
+  transition: transform 0.3s ease;
+}
+
+.dash-popup-overlay.active .dash-popup-content {
+  transform: scale(1);
+}
+
+.dash-popup-content h2 {
+  font-size: 24px;
+  color: var(--primary-dark);
+  margin-bottom: 10px;
+}
+
+.dash-popup-content p {
+  font-size: 16px;
+  color: var(--gray);
+  margin-bottom: 20px;
+}
+
+.dash-popup-button-group {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.dash-popup-go-to-services-button,
+.dash-popup-exit-button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+.dash-popup-go-to-services-button {
+  background-color: var(--primary-orange);
+  color: #fff;
+}
+
+.dash-popup-go-to-services-button:hover {
+  background-color: var(--secondary-orange);
+  transform: scale(1.05);
+}
+
+.dash-popup-exit-button {
+  background-color: var(--gray);
+  color: #fff;
+}
+
+.dash-popup-exit-button:hover {
+  background-color: #555;
+  transform: scale(1.05);
+}
+
+/* Animations */
+.dash-animate-on-scroll {
+  opacity: 0;
+  transition: all 0.5s ease;
+}
+
+.dash-animate-on-scroll.dash-visible {
+  opacity: 1;
+}
+
+.dash-slide-in-left {
+  transform: translateX(-50px);
+}
+
+.dash-slide-in-left.dash-visible {
+  transform: translateX(0);
+}
+
+.dash-slide-in-right {
+  transform: translateX(50px);
+}
+
+.dash-slide-in-right.dash-visible {
+  transform: translateX(0);
+}
+
+.dash-fade-in {
+  opacity: 0;
+}
+
+.dash-fade-in.dash-visible {
+  opacity: 1;
+}
+
+.dash-fade-in-scale {
+  opacity: 0;
+  transform: scale(0.95);
+}
+
+.dash-fade-in-scale.dash-visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.dash-scale-in {
+  transform: scale(0.95);
+}
+
+.dash-scale-in.dash-visible {
+  transform: scale(1);
+}
+
+.dash-fade-in-delay-1 {
+  transition-delay: 0.2s;
+}
+
+.dash-fade-in-delay-2 {
+  transition-delay: 0.4s;
+}
+
+.dash-fade-in-delay-3 {
+  transition-delay: 0.6s;
+}
+
+@keyframes dash-wave {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+.dash-wave-animation {
+  display: inline-block;
+  animation: dash-wave 1.5s infinite;
+}
+
+@keyframes dash-bounce {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+.dash-bounce-in {
+  animation: dash-bounce 0.5s ease;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .dash-hero-section {
+    padding: 30px 10px;
+    min-height: 400px;
+  }
+
+  .dash-hero-title {
+    font-size: 36px;
+  }
+
+  .dash-hero-tagline,
+  .dash-hero-description {
+    font-size: 16px;
+  }
+
+  .dash-hero-cta-button,
+  .dash-service-cta-button,
+  .dash-cta-button {
+    padding: 10px 20px;
+  }
+
+  .dash-why-choose-grid,
+  .dash-testimonials-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .dash-services-slide {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .dash-service-card {
+    min-width: 100%;
+    height: 350px;
+  }
+
+  .dash-carousel-prev,
+  .dash-carousel-next {
+    display: none;
+  }
+
+  .dash-about-section {
+    flex-direction: column;
+  }
+
+  .dash-about-image {
+    margin-top: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .dash-hero-section {
+    min-height: 300px;
+  }
+
+  .dash-hero-title {
+    font-size: 28px;
+  }
+
+  .dash-hero-tagline,
+  .dash-hero-description {
+    font-size: 14px;
+  }
+
+  .dash-section-title,
+  .dash-cta-title {
+    font-size: 22px;
+  }
+
+  .dash-why-choose-card,
+  .dash-testimonial-card {
+    padding: 15px;
+  }
+
+  .dash-service-card {
+    height: 300px;
+  }
+
+  .dash-carousel-dots {
+    gap: 8px;
+  }
+
+  .dash-dot {
+    width: 8px;
+    height: 8px;
+  }
+}

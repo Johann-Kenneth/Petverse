@@ -1,0 +1,40 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh; /* Ensure full viewport height */
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.app-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 80px; /* Adjust this based on your Navbar's actual height */
+  background-color: #1a3c34; /* RoxVet theme color */
+  z-index: 1000; /* Ensure Navbar stays above other content */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.app-main-content {
+  flex: 1 0 auto;
+  padding-top: 60px; /* Match the Navbar height */
+/* Increase to accommodate dynamic Footer height */
+}
+
+/* Remove fixed height and let Footer component control its own styling */
+footer {
+  flex-shrink: 0;
+  z-index: 1000; /* Ensure footer is above other content */
+}
+
+* {
+  box-sizing: border-box;
+}
