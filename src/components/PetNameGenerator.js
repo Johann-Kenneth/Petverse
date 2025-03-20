@@ -1,12 +1,9 @@
 import { useState } from "react";
-import { OpenAI } from "openai";
+import axios from "axios"; // Import axios
 import "./PetNameGenerator.css";
 
-// Initialize OpenAI client with environment variable
-const openai = new OpenAI({
-  apiKey: process.env.REACT_APP_OPENAI_API_KEY, // Load from environment variable
-  dangerouslyAllowBrowser: true,
-});
+// Remove OpenAI import since we’re not using it anymore
+// import { OpenAI } from "openai";
 
 const PetNameGenerator = () => {
   const [petType, setPetType] = useState("");
@@ -27,32 +24,22 @@ const PetNameGenerator = () => {
     setNames([]);
 
     try {
-      const prompt = `Generate 5 unique names for a ${age}-year-old ${traits} ${petType}. The names should be diverse, including cute, mythological, funny, and exotic options. Return the names in a simple list format like:
-      - Name1
-      - Name2
-      - Name3
-      - Name4
-      - Name5`;
-
-      const response = await openai.chat.completions.create({
-        model: "gpt-4",
-        messages: [{ role: "user", content: prompt }],
-        max_tokens: 100,
+      // Make the API call to jsongpt
+      const response = await axios.get("https://api.jsongpt.com/json", {
+        params: {
+          prompt: `Generate 5 unique names for a ${age}-year-old ${traits} ${petType}. The names should be diverse, including cute, mythological, funny, and exotic options.`,
+          names: "array of pet names",
+        },
       });
 
-      const generatedText = response.choices[0].message.content.trim();
-      const generatedNames = generatedText
-        .split("\n")
-        .map((name) => name.replace(/^- /, "").trim())
-        .filter((name) => name.length > 0);
-
-      if (generatedNames.length === 0) {
+      // Check if the response contains names
+      if (!response.data.names || response.data.names.length === 0) {
         throw new Error("No names generated");
       }
 
-      setNames(generatedNames);
+      setNames(response.data.names);
     } catch (error) {
-      console.error("Error generating pet names:", error);
+      console.error("Error generating pet names:", error.message);
       setError("Failed to generate names. Please try again.");
     } finally {
       setLoading(false);
