@@ -354,7 +354,7 @@ const ServiceDetails = () => {
           className="sd-banner-video"
           poster={content.fallbackImage}
         >
-          <source src={content.backgroundVideo} type="video/mp4" />
+          <source src={serviceDetails} type="video/mp4" />
           Your browser does not support the video tag.
         </video>
         <div className="sd-banner-content">
