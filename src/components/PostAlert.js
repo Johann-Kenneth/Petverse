@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { collection, addDoc, getDocs, query, where, updateDoc, doc } from "firebase/firestore"; // Firestore methods
 import Navbar from './Navbar';
 import "./PostAlert.css";
-
+import postAlertVideo from './videos/post-alert-video.mp4'
 const PostAlert = () => {
   const navigate = useNavigate();
   const [title, setTitle] = useState("");
@@ -135,7 +135,7 @@ const PostAlert = () => {
       {/* Hero Section */}
       <section className="hero-section animate-on-scroll" id="hero-section">
         <video className="hero-video" autoPlay loop muted playsInline>
-          <source src="/videos/post-alert-video.mp4" type="video/mp4" />
+          <source src={postAlertVideo} type="video/mp4" />
           <img
             src="/fallback-image.jpg"
             alt="Fallback for video"

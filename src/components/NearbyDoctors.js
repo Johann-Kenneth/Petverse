@@ -5,6 +5,7 @@ import axios from 'axios';
 import L from 'leaflet';
 import { useNavigate, Link } from 'react-router-dom';
 import './NearbyDoctors.css';
+import nearbyDoctorVideo from './videos/pets-doctor-video.mp4'
 
 // Custom vet icon
 const vetIcon = new L.Icon({
@@ -133,7 +134,7 @@ const NearbyDoctors = () => {
       <section className="hero-section animate-on-scroll">
         <div className="video-container">
           <video autoPlay loop muted playsInline>
-            <source src="/videos/pets-doctor-video.mp4" type="video/mp4" />
+            <source src={nearbyDoctorVideo} type="video/mp4" />
             Your browser does not support the video tag.
           </video>
         </div>

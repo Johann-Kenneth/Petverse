@@ -6,7 +6,7 @@ import L from 'leaflet';
 import { useNavigate, Link } from 'react-router-dom';
 import './NearbyPetShops.css';
 import { motion } from "framer-motion";
-
+import petShopVideo from './videos/petshop-video.mp4'
 // Custom pet shop icon
 const petShopIcon = new L.Icon({
   iconUrl: 'https://cdn-icons-png.flaticon.com/512/3050/3050525.png',
@@ -133,7 +133,7 @@ const NearbyPetShops = () => {
           className="hero-video"
           poster="https://i.pinimg.com/474x/df/25/61/df2561d8c581d0cf82057a4bc558eff7.jpg"
         >
-          <source src="/videos/petshop-video.mp4" type="video/mp4" />
+          <source src={petShopVideo} type="video/mp4" />
           Your browser does not support the video tag.
           <img
             src="https://i.pinimg.com/474x/df/25/61/df2561d8c581d0cf82057a4bc558eff7.jpg"

@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { db } from "./firebase";
 import { collection, getDocs, query, where, orderBy, updateDoc, doc, addDoc } from "firebase/firestore";
 import "./MissingPets.css";
+import missingPetsvideo from "./videos/missing-pets-video.mp4"
 
 function MissingPets() {
   const [missingPets, setMissingPets] = useState([]);
@@ -193,7 +194,7 @@ function MissingPets() {
             preload="auto"
             onError={handleVideoError}
           >
-            <source src="/videos/missing-pets-video.mp4" type="video/mp4" />
+            <source src={missingPetsvideo} type="video/mp4" />
           </video>
         ) : (
           <div className="missing-pets-hero-fallback-container">

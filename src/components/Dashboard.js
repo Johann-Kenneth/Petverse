@@ -5,6 +5,7 @@ import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from './firebase';
 import aboutSectionImage from './images/catAndDog.png';
 import mainImg from './images/home.jpg';
+import homeVideo from './videos/home-video.mp4'
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -187,7 +188,7 @@ const Dashboard = () => {
       <section className="dash-hero-section dash-animate-on-scroll dash-slide-in-left">
         <div className="dash-video-container">
           <video autoPlay loop muted playsInline className="dash-hero-video">
-            <source src="/videos/home-video.mp4" type="video/mp4" />
+            <source src={homeVideo} type="video/mp4" />
             Your browser does not support the video tag.
             <img src="https://images.pexels.com/photos/1084165/pexels-photo-1084165.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"/>
             </video>

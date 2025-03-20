@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import { fetchPetShelters } from "../utils/petfinderAPI";
 import "./PetShelters.css";
+import petShelterVideo from './videos/find-shelter-video.mp4'
 
 const PetShelters = () => {
   const [shelters, setShelters] = useState([]);
@@ -59,7 +60,7 @@ const PetShelters = () => {
       {/* Hero Banner */}
       <section className="pet-hero-banner">
         <video className="pet-hero-video" autoPlay loop muted playsInline>
-          <source src="/videos/find-shelter-video.mp4" type="video/mp4" />
+          <source src={petShelterVideo} type="video/mp4" />
           Your browser does not support the video tag.
         </video>
         <div className="pet-hero-overlay"></div> {/* Overlay for readability */}

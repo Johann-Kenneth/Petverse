@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import './ServiceDetails.css';
+import serviceDetails from './videos/service-details-video.mp4'
 
 const ServiceDetails = () => {
   const { title } = useParams();
@@ -190,30 +191,7 @@ const ServiceDetails = () => {
             'Celebrate small milestones to keep your pet motivated.',
           ],
         };
-      case 'Vaccination Reminder':
-        return {
-          title: 'Vaccination Reminder',
-          description:
-            'Never miss a vaccination date with Petverse’s reminder service. Set up alerts for your pet’s shots and receive timely notifications to keep their health on track. Peace of mind for pet owners, with customizable options for multiple pets and integration with your vet’s schedule!',
-          backgroundVideo: 'https://videos.pexels.com/video-files/3191812/3191812-hd_1920_1080_30fps.mp4',
-          fallbackImage: 'https://images.unsplash.com/photo-1560807707-8cc77767d783?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80',
-          rating: 4.3,
-          reviews: 90,
-          benefits: [
-            'Automated reminders for all your pet’s vaccinations with customizable intervals.',
-            'Customizable alerts via email, SMS, or app notifications.',
-            'Track vaccination history in one place with a digital log.',
-            'Sync reminders with your calendar for seamless planning.',
-            'Receive follow-up alerts for booster shots.',
-          ],
-          tips: [
-            'Consult your vet for a vaccination schedule tailored to your pet’s needs.',
-            'Set reminders a few days in advance to prepare and schedule appointments.',
-            'Keep a record of vaccination dates for future reference and vet visits.',
-            'Update reminders if your pet’s schedule changes due to health conditions.',
-            'Share reminder settings with family members for accountability.',
-          ],
-        };
+      
       case 'Pet Names':
         return {
           title: 'Pet Names',
@@ -291,7 +269,7 @@ const ServiceDetails = () => {
           title: 'Pet Food Recommendation',
           description:
             'Get personalized food recommendations for your pet based on its age, breed, size, activity level, and health conditions. Our advanced system uses expert insights to suggest the best diets, including dry kibble, wet food, or raw diets, tailored to your pet’s unique needs. Start your journey to optimal pet nutrition with Petverse!',
-          backgroundVideo: 'https://videos.pexels.com/video-files/3191812/3191812-hd_1920_1080_30fps.mp4',
+          backgroundVideo: {serviceDetails},
           fallbackImage: 'https://images.unsplash.com/photo-1606923828922-8a55d098e7ae?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80',
           rating: 4.7,
           reviews: 90,
@@ -316,7 +294,7 @@ const ServiceDetails = () => {
           title: 'Service Details',
           description:
             'Explore all the exceptional services offered by Petverse to care for your pets and enhance your pet-owning experience. From health and training to adoption and community support, Petverse is your all-in-one solution for pet care, designed to make every moment with your pet special and stress-free.',
-          backgroundVideo: '/videos/service-details-video.mp4',
+          backgroundVideo: {serviceDetails},
           fallbackImage: 'https://images.pexels.com/photos/551628/pexels-photo-551628.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
           rating: 4.5,
           reviews: 100,

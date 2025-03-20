@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import './TrainingVideos.css';
+import trainingVideos from './videos/training-video.mp4'
 
 const TrainingVideos = () => {
   const [videos, setVideos] = useState([]);
@@ -201,7 +202,7 @@ const TrainingVideos = () => {
       {/* Introductory Banner Section with Video */}
       <section className="intro-banner">
         <video className="intro-video" autoPlay loop muted playsInline>
-          <source src="/videos/training-video.mp4" type="video/mp4" />
+          <source src={trainingVideos} type="video/mp4" />
           <img
             src="/fallback-image.jpg"
             alt="Fallback for video"

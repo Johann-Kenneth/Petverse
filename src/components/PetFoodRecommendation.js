@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { generateContent } from '../utils/geminiConfig';
 import './PetFoodRecommendation.css';
+import petFoodVideo from './videos/pet-food-recommendation.mp4'
 
 const PetFoodRecommendation = () => {
   const [petData, setPetData] = useState({
@@ -219,7 +220,7 @@ const PetFoodRecommendation = () => {
           className="rec-banner-video"
           poster={content.fallbackImage}
         >
-          <source src='/videos/pet-food-recommendation.mp4' type="video/mp4" />
+          <source src={petFoodVideo} type="video/mp4" />
           Your browser does not support the video tag.
         </video>
         <div className="rec-banner-content">

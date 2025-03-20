@@ -1,9 +1,8 @@
 [
-    {
-      "origin": ["http://localhost:3000"],
-      "method": ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-      "maxAgeSeconds": 3600,
-      "responseHeader": ["Content-Type", "Authorization"]
-    }
-  ]
-  
+  {
+    "origin": ["http://localhost:3000", "https://petverse-k5ed6fpmd-joos-projects-206a02bd.vercel.app"],
+    "method": ["GET", "POST", "PUT", "OPTIONS"],
+    "responseHeader": ["Content-Type", "Authorization", "x-goog-resumable"],
+    "maxAgeSeconds": 3600
+  }
+]

@@ -6,6 +6,7 @@ import { auth, provider, db } from './firebase';
 import { onAuthStateChanged } from 'firebase/auth';
 import './authStyles.css';
 import googleLogo from './images/google_logo.png';
+import signinVideo from './videos/signin-video.mp4'
 
 const SignIn = () => {
   const navigate = useNavigate();
@@ -88,7 +89,7 @@ const SignIn = () => {
   return (
     <div className="auth-container pet-theme">
       <video autoPlay muted loop className="auth-video">
-        <source src="./videos/signin-video.mp4" type="video/mp4" />
+        <source src={signinVideo} type="video/mp4" />
         <p>Your browser does not support the video tag. If you see this, the video may not be loading due to a path issue.</p>
       </video>
       <div className="auth-overlay"></div>
