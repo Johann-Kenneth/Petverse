@@ -34,6 +34,27 @@ top: 35%;
 left: 25%;
 color: #ffffff;
 }
+/* Tablets (max-width: 768px) */
+@media (max-width: 768px) {
+  .banner-section {
+    height: 50vh; /* Reduce height for tablets */
+  }
+
+  .rec-banner-video {
+    object-fit: cover; /* Maintain aspect ratio */
+  }
+}
+
+/* Mobile devices (max-width: 480px) */
+@media (max-width: 480px) {
+  .banner-section {
+    height: 40vh; /* Further reduce height for mobile */
+  }
+
+  .rec-banner-video {
+    object-fit: cover; /* Maintain aspect ratio */
+  }
+}
 
 .search-bar {
   margin-bottom: 20px;
