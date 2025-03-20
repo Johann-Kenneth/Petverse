@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
-import axios from "axios";
+import { db } from "./firebase";
+import { collection, getDocs, query, where, orderBy, updateDoc, doc, addDoc } from "firebase/firestore";
 import "./MissingPets.css";
 
 function MissingPets() {
@@ -12,12 +13,11 @@ function MissingPets() {
   const [sightingSubmitted, setSightingSubmitted] = useState(false);
   const [volunteer, setVolunteer] = useState({ name: "", email: "", message: "" });
   const [volunteerSubmitted, setVolunteerSubmitted] = useState(false);
-  const [videoError, setVideoError] = useState(false); // State to control fallback
+  const [videoError, setVideoError] = useState(false);
   const videoRef = useRef(null);
 
   useEffect(() => {
     fetchMissingPets();
-    // Check video state after mount
     if (videoRef.current) {
       console.log("Video element mounted:", {
         src: videoRef.current.currentSrc,
@@ -38,10 +38,15 @@ function MissingPets() {
   const fetchMissingPets = async () => {
     setLoading(true);
     try {
-      const response = await axios.get("http://localhost:5000/api/pet-alerts");
-      console.log("Missing Pets Response:", response.data);
-      setMissingPets(response.data);
-      setFilteredPets(response.data);
+      const q = query(
+        collection(db, "petAlerts"),
+        orderBy("timestamp", "desc")
+      );
+      const querySnapshot = await getDocs(q);
+      const pets = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+      console.log("Missing Pets from Firestore:", pets);
+      setMissingPets(pets);
+      setFilteredPets(pets);
     } catch (error) {
       console.error("Error fetching missing pets:", error);
     } finally {
@@ -51,11 +56,12 @@ function MissingPets() {
 
   const markAsFound = async (petId) => {
     try {
-      await axios.put(`http://localhost:5000/api/pet-alerts/update-status/${petId}`, { status: "found" });
-      setMissingPets((prevPets) => prevPets.filter((pet) => pet._id !== petId));
-      setFilteredPets((prevPets) => prevPets.filter((pet) => pet._id !== petId));
+      const alertRef = doc(db, "petAlerts", petId);
+      await updateDoc(alertRef, { status: "found" });
+      setMissingPets((prevPets) => prevPets.filter((pet) => pet.id !== petId));
+      setFilteredPets((prevPets) => prevPets.filter((pet) => pet.id !== petId));
     } catch (error) {
-      console.error("Error updating pet status:", error.response?.data || error.message);
+      console.error("Error updating pet status:", error);
     }
   };
 
@@ -111,10 +117,11 @@ function MissingPets() {
   const submitSighting = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:5000/api/sightings", {
+      await addDoc(collection(db, "sightings"), {
         petId: sighting.petId,
         location: sighting.location,
         description: sighting.description,
+        timestamp: new Date(),
       });
       setSighting({ petId: "", location: "", description: "" });
       setSightingSubmitted(true);
@@ -132,7 +139,12 @@ function MissingPets() {
   const submitVolunteer = async (e) => {
     e.preventDefault();
     try {
-      console.log("Volunteer signup:", volunteer);
+      await addDoc(collection(db, "volunteers"), {
+        name: volunteer.name,
+        email: volunteer.email,
+        message: volunteer.message,
+        timestamp: new Date(),
+      });
       setVolunteer({ name: "", email: "", message: "" });
       setVolunteerSubmitted(true);
       setTimeout(() => setVolunteerSubmitted(false), 3000);
@@ -162,7 +174,7 @@ function MissingPets() {
     console.error("Video source:", e.target.currentSrc);
     console.error("Network state:", e.target.networkState);
     console.error("Ready state:", e.target.readyState);
-    setVideoError(true); // Show fallback on error
+    setVideoError(true);
   };
 
   return (
@@ -171,7 +183,7 @@ function MissingPets() {
       <section className="missing-pets-hero">
         {!videoError ? (
           <video
-            key="missing-pets-video" // Force re-render
+            key="missing-pets-video"
             ref={videoRef}
             className="missing-pets-hero-video"
             autoPlay
@@ -242,13 +254,16 @@ function MissingPets() {
       ) : (
         <div className="missing-pets-results">
           {filteredPets.map((pet) => (
-            <div key={pet._id} className="missing-pets-card">
+            <div key={pet.id} className="missing-pets-card">
               <div className="missing-pets-card-image-container">
                 {pet.imageUrl ? (
                   <img
-                    src={`http://localhost:5000${pet.imageUrl}`}
+                    src={pet.imageUrl}
                     alt={pet.title}
                     className="missing-pets-card-image"
+                    onError={(e) => {
+                      e.target.src = "/fallback-image.jpg"; // Fallback image if the URL fails
+                    }}
                   />
                 ) : (
                   <div className="missing-pets-card-image-placeholder">No Image Available</div>
@@ -260,7 +275,7 @@ function MissingPets() {
                 <div className="missing-pets-card-actions">
                   <button
                     className="missing-pets-card-button"
-                    onClick={() => markAsFound(pet._id)}
+                    onClick={() => markAsFound(pet.id)}
                   >
                     Mark as Found
                   </button>
@@ -296,7 +311,7 @@ function MissingPets() {
           >
             <option value="">Select a Pet</option>
             {filteredPets.map((pet) => (
-              <option key={pet._id} value={pet._id}>
+              <option key={pet.id} value={pet.id}>
                 {pet.title}
               </option>
             ))}

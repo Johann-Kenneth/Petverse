@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { auth } from "./firebase";
+import { auth, db } from "./firebase"; // Import Firestore
 import { onAuthStateChanged } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import { collection, addDoc, getDocs, query, where, updateDoc, doc } from "firebase/firestore"; // Firestore methods
 import Navbar from './Navbar';
 import "./PostAlert.css";
 
@@ -11,12 +11,10 @@ const PostAlert = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [status, setStatus] = useState("missing");
-  const [image, setImage] = useState(null);
-  const [imagePreview, setImagePreview] = useState(null);
-  const [uploading, setUploading] = useState(false);
   const [userId, setUserId] = useState(null);
   const [visibleSections, setVisibleSections] = useState({});
   const [scrollDirection, setScrollDirection] = useState('down');
+  const [uploading, setUploading] = useState(false);
 
   // Sample user testimonials
   const userTestimonials = [
@@ -73,15 +71,6 @@ const PostAlert = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const handleImageChange = (e) => {
-    if (e.target.files[0]) {
-      setImage(e.target.files[0]);
-      const reader = new FileReader();
-      reader.onload = () => setImagePreview(reader.result);
-      reader.readAsDataURL(e.target.files[0]);
-    }
-  };
-
   const handlePost = async () => {
     if (!title || !description) {
       alert("Title and description are required");
@@ -94,21 +83,18 @@ const PostAlert = () => {
     }
 
     setUploading(true);
-    const formData = new FormData();
-    formData.append("title", title);
-    formData.append("description", description);
-    formData.append("status", status);
-    formData.append("userId", userId);
-    if (image) formData.append("image", image);
 
     try {
-      const response = await axios.post(
-        "http://localhost:5000/api/pet-alerts/post-alert",
-        formData,
-        { headers: { "Content-Type": "multipart/form-data" } }
-      );
+      // Save the pet alert to Firestore
+      await addDoc(collection(db, "petAlerts"), {
+        title,
+        description,
+        status,
+        userId,
+        timestamp: new Date(), // Add timestamp for sorting
+      });
 
-      alert(response.data.message);
+      alert("Pet alert posted successfully!");
       setUploading(false);
       navigate("/missing-pets");
     } catch (error) {
@@ -145,37 +131,36 @@ const PostAlert = () => {
 
   return (
     <div className="post-alert-container">
-  <Navbar />
-  {/* Hero Section */}
-  <section className="hero-section animate-on-scroll" id="hero-section">
-    <video className="hero-video" autoPlay loop muted playsInline>
-      <source src="/videos/post-alert-video.mp4" type="video/mp4" />
-      {/* Fallback image in case video doesn't load */}
-      <img
-        src="/fallback-image.jpg" // Replace with your fallback image path in public folder
-        alt="Fallback for video"
-        className="hero-fallback"
-      />
-      Your browser does not support the video tag.
-    </video>
-    <div className="hero-overlay"></div> {/* Overlay for readability */}
-    <div className="hero-content">
-      <h1>We’re Here to Help Find Your Missing Pet</h1>
-      <p className="hero-description">
-        Losing a pet is heartbreaking, but you’re not alone. Petverse’s alert system connects you with a caring community to help bring your pet home. Share details below, and let’s get started.
-      </p>
-      <button className="hero-cta-btn" onClick={handleScrollToForm}>
-        Report Now <span>▶</span>
-      </button>
-    </div>
-  </section>
+      <Navbar />
+      {/* Hero Section */}
+      <section className="hero-section animate-on-scroll" id="hero-section">
+        <video className="hero-video" autoPlay loop muted playsInline>
+          <source src="/videos/post-alert-video.mp4" type="video/mp4" />
+          <img
+            src="/fallback-image.jpg"
+            alt="Fallback for video"
+            className="hero-fallback"
+          />
+          Your browser does not support the video tag.
+        </video>
+        <div className="hero-overlay"></div>
+        <div className="hero-content">
+          <h1>We’re Here to Help Find Your Missing Pet</h1>
+          <p className="hero-description">
+            Losing a pet is heartbreaking, but you’re not alone. Petverse’s alert system connects you with a caring community to help bring your pet home. Share details below, and let’s get started.
+          </p>
+          <button className="hero-cta-btn" onClick={handleScrollToForm}>
+            Report Now <span>▶</span>
+          </button>
+        </div>
+      </section>
 
       <div className="content-wrapper">
         <main className="main-content">
           <section className="service-description animate-on-scroll" id="form-section">
             <h2>Report a Missing Pet</h2>
             <p>
-              Use Petverse to report your lost pet and connect with a community ready to help. Provide details like a photo, description, and location to increase your chances of a reunion.
+              Use Petverse to report your lost pet and connect with a community ready to help. Provide details like a description and location to increase your chances of a reunion.
             </p>
             <div className="alert-form-container">
               <div className="alert-step">
@@ -193,20 +178,6 @@ const PostAlert = () => {
                   value={description}
                   onChange={(e) => setDescription(e.target.value)}
                 />
-              </div>
-              <div className="alert-step">
-                <h3>Step 2: Upload Photo</h3>
-                <input
-                  className="alert-file-input"
-                  type="file"
-                  accept="image/*"
-                  onChange={handleImageChange}
-                />
-                {imagePreview && (
-                  <div className="image-preview">
-                    <img src={imagePreview} alt="Selected" />
-                  </div>
-                )}
               </div>
               <button
                 className="alert-button"
@@ -232,7 +203,6 @@ const PostAlert = () => {
             <div className="service-tips">
               <h3>Tips for Success</h3>
               <ul>
-                <li>Upload a recent, clear photo of your pet.</li>
                 <li>Include unique identifiers (e.g., collar, markings).</li>
                 <li>Check back often for community updates.</li>
                 <li>Share the alert on social media for wider reach.</li>
@@ -248,7 +218,7 @@ const PostAlert = () => {
         <div className="how-it-works-grid">
           <div className="how-it-works-card">
             <h3>1. Fill Out the Form</h3>
-            <p>Add your pet’s details, including name, description, and a photo to create an alert.</p>
+            <p>Add your pet’s details, including name and description to create an alert.</p>
           </div>
           <div className="how-it-works-card">
             <h3>2. Alert the Community</h3>
