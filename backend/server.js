@@ -2,12 +2,8 @@ import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import connectDB from "./config/db.js";
-import petNameRoutes from "./routes/petNames.js";
-import petAlertRoutes from "./routes/petAlerts.js";
-import vaccinationReminderRoutes from "./routes/vaccinationReminder.js";
 import { v2 as cloudinary } from "cloudinary";
 import petfinderRoutes from "./routes/petfinder.js";
-import Vaccination from "./models/Vaccination.js";
 
 dotenv.config();
 const app = express();
@@ -116,10 +112,8 @@ const getSmsGatewayEmail = (phoneNumber) => {
 
 // Define API Routes
 
-app.use("/api/pet-names", petNameRoutes);
-app.use("/api/pet-alerts", petAlertRoutes);
 app.use("/api/petfinder", petfinderRoutes);
-app.use("/api/vaccination-reminder", vaccinationReminderRoutes);
+
 
 // Start the Server
 const PORT = process.env.PORT || 5000;

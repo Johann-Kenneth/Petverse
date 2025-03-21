@@ -87,7 +87,62 @@
   color: var(--primary-orange);
   transform: scale(1.05);
 }
+@media (max-width: 768px) {
+  .pet-hero-section {
+    height: 50vh; /* Reduce height for tablets */
+  }
 
+  .pet-hero-video {
+    object-fit: cover;
+  }
+
+  .pet-hero-content {
+    max-width: 90%; /* Slightly wider on tablets */
+    padding: 15px;
+  }
+
+  .pet-hero-title {
+    font-size: 2rem; /* Smaller font size */
+  }
+
+  .pet-hero-description {
+    font-size: 1rem;
+  }
+
+  .pet-hero-cta-button {
+    padding: 10px 25px;
+    font-size: 1rem;
+  }
+}
+
+/* Mobile devices (max-width: 480px) */
+@media (max-width: 480px) {
+  .pet-hero-section {
+    height: 40vh; /* Further reduce height for mobile */
+  }
+
+  .pet-hero-video {
+    object-fit: cover;
+  }
+
+  .pet-hero-content {
+    max-width: 95%; /* Full width on mobile */
+    padding: 10px;
+  }
+
+  .pet-hero-title {
+    font-size: 1.5rem; /* Even smaller font size */
+  }
+
+  .pet-hero-description {
+    font-size: 0.9rem;
+  }
+
+  .pet-hero-cta-button {
+    padding: 8px 20px;
+    font-size: 0.9rem;
+  }
+}
 .pet-shelter-spotlight-section,
 .pet-benefits-section,
 .pet-search-section,

@@ -55,6 +55,62 @@
 .hero-cta-btn span {
   margin-left: 5px;
 }
+@media (max-width: 768px) {
+  .hero-section {
+    height: 50vh; /* Reduce height for tablets */
+  }
+
+  .hero-video {
+    object-fit: cover;
+  }
+
+  .hero-content {
+    max-width: 90%; /* Slightly wider on tablets */
+    padding: 15px;
+  }
+
+  .hero-title {
+    font-size: 2rem; /* Smaller font size */
+  }
+
+  .hero-description {
+    font-size: 1rem;
+  }
+
+  .hero-cta-btn {
+    padding: 10px 25px;
+    font-size: 1rem;
+  }
+}
+
+/* Mobile devices (max-width: 480px) */
+@media (max-width: 480px) {
+  .hero-section {
+    height: 100vh; /* Further reduce height for mobile */
+  }
+
+  .hero-video {
+    object-fit: cover;
+  }
+
+  .hero-content {
+    max-width: 95%; /* Full width on mobile */
+    padding: 10px;
+  }
+
+  .hero-title {
+    font-size: 1.5rem; /* Even smaller font size */
+  }
+
+  .hero-description {
+    font-size: 0.9rem;
+  }
+
+  .hero-cta-btn {
+    padding: 8px 20px;
+    font-size: 0.9rem;
+  }
+}
 
 /* Content Wrapper */
 .content-wrapper {

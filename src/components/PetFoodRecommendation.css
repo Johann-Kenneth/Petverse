@@ -24,35 +24,149 @@ h1 {
   font-style: italic;
   margin-bottom: 20px;
 }
-.rec-banner-video{
+/* Ensure the container takes up the full width */
+.recommendation-container {
   width: 100%;
+  overflow: hidden; /* Prevent overflow issues */
 }
-.rec-banner-content{
-text-align: center;
-position: absolute;
-top: 35%;
-left: 25%;
-color: #ffffff;
+
+/* Style the banner section to be a full-width container with a relative position */
+.banner-section {
+  position: relative;
+  width: 100%;
+  height: 60vh; /* Default height for desktop */
+  overflow: hidden; /* Hide any overflow */
+  display: flex; /* Center the content */
+  align-items: center; /* Vertically center */
+  justify-content: center; /* Horizontally center */
 }
+
+/* Style the video to cover the entire section */
+.rec-banner-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensures the video covers the area while maintaining aspect ratio */
+  object-position: center; /* Centers the video */
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1; /* Behind the content */
+}
+
+/* Add a semi-transparent overlay for better text readability */
+.banner-section::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4); /* Dark overlay for contrast */
+  z-index: 2; /* Above the video, below the content */
+}
+
+/* Style the content overlay */
+.rec-banner-content {
+  position: relative;
+  z-index: 3; /* Above the video and overlay */
+  text-align: center;
+  color: #fff; /* White text for contrast */
+  padding: 20px;
+  max-width: 80%; /* Prevent content from stretching too wide */
+}
+
+/* Style the title */
+.banner-title {
+  font-size: 3rem; /* Default for desktop */
+  font-weight: 700;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Improve readability */
+}
+
+/* Style the description */
+.banner-description {
+  font-size: 1.25rem; /* Default for desktop */
+  margin-bottom: 1.5rem;
+  line-height: 1.5;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+/* Style the CTA button */
+.banner-cta-btn {
+  background-color: #ff6f61; /* Example color */
+  color: #fff;
+  border: none;
+  padding: 12px 30px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.banner-cta-btn:hover {
+  background-color: #e65b50; /* Darker shade on hover */
+  transform: scale(1.05);
+}
+
+/* Media Queries for Responsiveness */
+
 /* Tablets (max-width: 768px) */
 @media (max-width: 768px) {
   .banner-section {
-    height: 50vh; /* Reduce height for tablets */
+    height: 100vh; /* Reduce height for tablets */
   }
 
   .rec-banner-video {
-    object-fit: cover; /* Maintain aspect ratio */
+    object-fit: cover;
+  }
+
+  .rec-banner-content {
+    max-width: 90%; /* Slightly wider on tablets */
+    padding: 15px;
+  }
+
+  .banner-title {
+    font-size: 2rem; /* Smaller font size */
+  }
+
+  .banner-description {
+    font-size: 1rem;
+  }
+
+  .banner-cta-btn {
+    padding: 10px 25px;
+    font-size: 1rem;
   }
 }
 
 /* Mobile devices (max-width: 480px) */
 @media (max-width: 480px) {
   .banner-section {
-    height: 40vh; /* Further reduce height for mobile */
+    height: 100vh; /* Further reduce height for mobile */
   }
 
   .rec-banner-video {
-    object-fit: cover; /* Maintain aspect ratio */
+    object-fit: cover;
+  }
+
+  .rec-banner-content {
+    max-width: 95%; /* Full width on mobile */
+    padding: 10px;
+  }
+
+  .banner-title {
+    font-size: 1.5rem; /* Even smaller font size */
+  }
+
+  .banner-description {
+    font-size: 0.9rem;
+  }
+
+  .banner-cta-btn {
+    padding: 8px 20px;
+    font-size: 0.9rem;
   }
 }
 

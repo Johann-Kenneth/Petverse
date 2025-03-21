@@ -89,6 +89,62 @@
   padding-top: 30px;
   color: white;
 }
+@media (max-width: 768px) {
+  .intro-banner {
+    height: 50vh; /* Reduce height for tablets */
+  }
+
+  .intro-video {
+    object-fit: cover;
+  }
+
+  .intro-content {
+    max-width: 90%; /* Slightly wider on tablets */
+    padding: 15px;
+  }
+
+  .intro-title {
+    font-size: 2rem; /* Smaller font size */
+  }
+
+  .intro-tagline {
+    font-size: 1rem;
+  }
+
+  .intro-cta-button {
+    padding: 10px 25px;
+    font-size: 1rem;
+  }
+}
+
+/* Mobile devices (max-width: 480px) */
+@media (max-width: 480px) {
+  .intro-banner {
+    height: 40vh; /* Further reduce height for mobile */
+  }
+
+  .intro-video {
+    object-fit: cover;
+  }
+
+  .intro-content {
+    max-width: 95%; /* Full width on mobile */
+    padding: 10px;
+  }
+
+  .intro-title {
+    font-size: 1.5rem; /* Even smaller font size */
+  }
+
+  .intro-tagline {
+    font-size: 0.9rem;
+  }
+
+  .intro-cta-button {
+    padding: 8px 20px;
+    font-size: 0.9rem;
+  }
+}
 /* Button Styles (Reusable) */
 .btn {
   padding: 12px 30px;

@@ -58,7 +58,23 @@
   margin-bottom: 25px;
   color: var(--light-gray);
 }
+@media (max-width: 768px) {
+  .adoptable-hero-banner {
+  
+    height: 100vh;
+   }
+  }
 
+/* Mobile devices (max-width: 480px) */
+@media (max-width: 480px) {
+
+  .adoptable-hero-banner {
+  
+   height: 100vh;
+  }
+
+ 
+}
 .adoptable-hero-cta-button,
 .adoptable-cta-button {
   background-color: #fff;
