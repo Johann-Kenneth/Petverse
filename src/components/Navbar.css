@@ -31,7 +31,7 @@
 
 .nav-link {
   font-size: 1rem;
-  color: #000000;
+  color: #ffffff;
   cursor: pointer;
   transition: color 0.3s;
   position: relative;
@@ -67,7 +67,7 @@
 
 .dropbtn {
   font-size: 1rem;
-  color: #000000;
+  color: #ffffff;
   cursor: pointer;
   position: relative;
   padding-bottom: 5px;
@@ -287,6 +287,14 @@
   .hamburger {
     display: flex;
   }
+  .hamburger .bar {
+    background-color: #fff; /* White color for the bars */
+  }
+
+  /* Ensure the close icon bars remain white */
+  .hamburger.open .bar {
+    background-color: #fff; /* White color for the close icon */
+  }
 
   .navbar-right {
     position: absolute;
@@ -312,6 +320,7 @@
     flex-direction: column;
     width: 100%;
     gap: 10px;
+    
   }
 
   .nav-link {
@@ -320,6 +329,7 @@
     width: 100%;
     position: relative;
     padding-bottom: 5px;
+    color: rgb(0, 0, 0);
   }
 
   .nav-link::after {
@@ -348,6 +358,7 @@
     padding: 10px 0;
     position: relative;
     padding-bottom: 5px;
+    color: #000;
   }
 
   .dropbtn::after {
@@ -428,9 +439,17 @@
   .nav-link,
   .dropbtn {
     font-size: 1rem;
+    color: #000;
   }
 
   .dropdown-content span {
     font-size: 0.9rem;
+  }
+  .hamburger .bar {
+    background-color: #fff;
+  }
+
+  .hamburger.open .bar {
+    background-color: #fff;
   }
 }
