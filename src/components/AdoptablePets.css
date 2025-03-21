@@ -1,4 +1,16 @@
 /* AdoptablePets.css */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+/* src/index.css */
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif; /* Apply Poppins as the default font */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  min-height: 100vh;
+}
 :root {
   --primary-dark: #1a3c34;
   --primary-orange: #f4a261;
@@ -10,7 +22,6 @@
 }
 
 .adoptable-pets-container {
-  font-family: Arial, sans-serif;
   color: #333;
   margin: 0;
   background-color: var(--off-white);

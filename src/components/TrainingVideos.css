@@ -1,4 +1,16 @@
 /* Define CSS Variables for Consistency */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+/* src/index.css */
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif; /* Apply Poppins as the default font */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  min-height: 100vh;
+}
 :root {
   --primary-color: #ff6f61; /* Petverse coral */
   --secondary-color: #4a8c8c; /* Teal for buttons */
@@ -12,8 +24,7 @@
 }
 
 /* Base Styles */
-.training-videos-container {
-  font-family: 'Poppins', sans-serif; /* Modern font */
+.training-videos-container { /* Modern font */
   color: var(--text-dark);
   background-color: var(--light-bg);
   margin: 0;
