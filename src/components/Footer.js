@@ -7,7 +7,7 @@ const Footer = () => {
       <div className="footer-content">
         <div className="footer-section">
           <h4>Petverse</h4>
-          <p>Providing top-notch pet care services since 2000.</p>
+          <p>Providing top-notch pet care services.</p>
         </div>
         <div className="footer-section">
           <h4>Quick Links</h4>
