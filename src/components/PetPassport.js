@@ -1,45 +1,60 @@
 // src/components/PetPassport.js
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { auth, db } from './firebase'; // Adjust the import path to your Firebase config
+import { auth, db } from './firebase';
 import { doc, setDoc, getDoc } from 'firebase/firestore';
 import { onAuthStateChanged } from 'firebase/auth';
-import './PetPassport.css'; // We'll create this CSS file next
+import './PetPassport.css';
 
 const PetPassport = () => {
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
-  const [petData, setPetData] = useState({
+  const [formData, setFormData] = useState({
     petName: '',
     medicalHistory: '',
     allergies: '',
     vetContact: '',
     emergencyContact: '',
   });
+  const [savedPetData, setSavedPetData] = useState(null); // State for displayed data
   const [loading, setLoading] = useState(false);
+  const [authLoading, setAuthLoading] = useState(true);
   const [error, setError] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
+
+  // Initial state for resetting the form
+  const initialFormData = {
+    petName: '',
+    medicalHistory: '',
+    allergies: '',
+    vetContact: '',
+    emergencyContact: '',
+  };
 
   // Check if user is authenticated
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       if (currentUser) {
         setUser(currentUser);
-        fetchPetData(currentUser.uid); // Fetch existing pet data on load
+        fetchPetData(currentUser.uid);
       } else {
-        navigate('/signin'); // Redirect to sign-in if not authenticated
+        navigate('/signin');
       }
+      setAuthLoading(false);
     });
     return () => unsubscribe();
   }, [navigate]);
 
   // Fetch existing pet data from Firestore
   const fetchPetData = async (uid) => {
+    console.log('Fetching pet data for UID:', uid);
     try {
       const docRef = doc(db, 'petPassports', uid);
       const docSnap = await getDoc(docRef);
       if (docSnap.exists()) {
-        setPetData(docSnap.data());
+        setSavedPetData(docSnap.data()); // Update displayed data
+      } else {
+        setSavedPetData(null); // No data exists yet
       }
     } catch (err) {
       console.error('Error fetching pet data:', err);
@@ -50,7 +65,7 @@ const PetPassport = () => {
   // Handle form input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setPetData((prev) => ({ ...prev, [name]: value }));
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
   // Handle form submission to save pet data
@@ -64,15 +79,27 @@ const PetPassport = () => {
 
     try {
       const docRef = doc(db, 'petPassports', user.uid);
-      await setDoc(docRef, petData, { merge: true });
+      await setDoc(docRef, formData, { merge: true });
       setSuccessMessage('Pet Passport updated successfully!');
+      // Clear the form by resetting formData
+      setFormData(initialFormData);
+      // Fetch the latest data to update the displayed details
+      await fetchPetData(user.uid);
     } catch (err) {
       console.error('Error saving pet data:', err);
-      setError('Failed to save pet data.');
+      if (err.code === 'permission-denied') {
+        setError('You do not have permission to save this data.');
+      } else {
+        setError('Failed to save pet data: ' + err.message);
+      }
     } finally {
       setLoading(false);
     }
   };
+
+  if (authLoading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div className="pet-passport-container">
@@ -89,7 +116,7 @@ const PetPassport = () => {
             type="text"
             id="petName"
             name="petName"
-            value={petData.petName}
+            value={formData.petName}
             onChange={handleChange}
             placeholder="Enter your pet's name"
             required
@@ -101,7 +128,7 @@ const PetPassport = () => {
           <textarea
             id="medicalHistory"
             name="medicalHistory"
-            value={petData.medicalHistory}
+            value={formData.medicalHistory}
             onChange={handleChange}
             placeholder="List any medical conditions, surgeries, or treatments"
             rows="4"
@@ -114,7 +141,7 @@ const PetPassport = () => {
             type="text"
             id="allergies"
             name="allergies"
-            value={petData.allergies}
+            value={formData.allergies}
             onChange={handleChange}
             placeholder="List any allergies (e.g., food, medication)"
           />
@@ -126,7 +153,7 @@ const PetPassport = () => {
             type="text"
             id="vetContact"
             name="vetContact"
-            value={petData.vetContact}
+            value={formData.vetContact}
             onChange={handleChange}
             placeholder="Vet's name and phone number"
           />
@@ -138,7 +165,7 @@ const PetPassport = () => {
             type="text"
             id="emergencyContact"
             name="emergencyContact"
-            value={petData.emergencyContact}
+            value={formData.emergencyContact}
             onChange={handleChange}
             placeholder="Emergency contact name and phone number"
           />
@@ -150,14 +177,14 @@ const PetPassport = () => {
       </form>
 
       {/* Display saved data */}
-      {(petData.petName || petData.medicalHistory || petData.allergies || petData.vetContact || petData.emergencyContact) && (
+      {savedPetData && (
         <div className="pet-passport-details">
           <h2>Your Pet's Information</h2>
-          {petData.petName && <p><strong>Pet Name:</strong> {petData.petName}</p>}
-          {petData.medicalHistory && <p><strong>Medical History:</strong> {petData.medicalHistory}</p>}
-          {petData.allergies && <p><strong>Allergies:</strong> {petData.allergies}</p>}
-          {petData.vetContact && <p><strong>Vet Contact:</strong> {petData.vetContact}</p>}
-          {petData.emergencyContact && <p><strong>Emergency Contact:</strong> {petData.emergencyContact}</p>}
+          {savedPetData.petName && <p><strong>Pet Name:</strong> {savedPetData.petName}</p>}
+          {savedPetData.medicalHistory && <p><strong>Medical History:</strong> {savedPetData.medicalHistory}</p>}
+          {savedPetData.allergies && <p><strong>Allergies:</strong> {savedPetData.allergies}</p>}
+          {savedPetData.vetContact && <p><strong>Vet Contact:</strong> {savedPetData.vetContact}</p>}
+          {savedPetData.emergencyContact && <p><strong>Emergency Contact:</strong> {savedPetData.emergencyContact}</p>}
         </div>
       )}
     </div>
