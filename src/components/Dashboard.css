@@ -25,7 +25,7 @@
 .dash-hero-section {
   position: relative;
   text-align: center;
-  color: #fff;
+  color: #ffffff;
   padding: 40px 20px;
   border-radius: 15px;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
@@ -584,7 +584,9 @@
   .dash-hero-title {
     font-size: 36px;
   }
-
+.dash-hero-content{
+ margin-top: 30px;
+}
   .dash-hero-tagline,
   .dash-hero-description {
     font-size: 16px;
@@ -629,7 +631,9 @@
   .dash-hero-section {
     min-height: 300px;
   }
-
+  .dash-hero-content{
+    margin-top: 30px;
+   }
   .dash-hero-title {
     font-size: 28px;
   }
