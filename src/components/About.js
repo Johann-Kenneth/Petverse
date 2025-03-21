@@ -60,7 +60,7 @@ const About = () => {
               <h3>Johann Kenneth</h3>
               <p className="team-role">Lead Developer</p>
               <p>
-                Johann is the tech genius behind Petverse’s platform. With over 10 years of experience in software development, he ensures our tools are user-friendly and efficient.
+                Johann is the tech genius behind Petverse’s platform. With a little experience in software development, he ensures our tools are user-friendly and efficient.
               </p>
             </div>
             <div className="team-member">

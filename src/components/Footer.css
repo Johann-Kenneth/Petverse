@@ -44,13 +44,13 @@
   }
   
   .footer-section ul li a {
-    color: #f4a261;
+    color: #ffffff;
     text-decoration: none;
     transition: color 0.3s ease;
   }
   
   .footer-section ul li a:hover {
-    color: #e07a5f;
+    color: orange;
   }
   
   .social-links {
