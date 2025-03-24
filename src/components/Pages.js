@@ -40,13 +40,6 @@ const Pages = () => {
             </ul>
             <a href="/missing-pets" className="section-link">Go to Missing Pets</a>
           </div>
-          <div className="missing-pets-image">
-            <img
-              src="https://via.placeholder.com/300x200?text=Missing+Pet"
-              alt="Missing Pet"
-              className="section-image"
-            />
-          </div>
         </div>
       </section>
 
@@ -62,33 +55,18 @@ const Pages = () => {
             <p>
               "Luna was found within 48 hours thanks to a neighbor's sighting! We posted her details on Petverse, and the community shared her alert widely. We’re so grateful!" - Sarah M.
             </p>
-            <img
-              src="https://via.placeholder.com/200x150?text=Luna+the+Cat"
-              alt="Luna the Cat"
-              className="story-image"
-            />
           </div>
           <div className="story-card">
             <h3>Max’s Happy Reunion</h3>
             <p>
               "Max came home after a week, all because of Petverse! A kind stranger spotted him and contacted us through the platform. Thank you, Petverse!" - John P.
             </p>
-            <img
-              src="https://via.placeholder.com/200x150?text=Max+the+Dog"
-              alt="Max the Dog"
-              className="story-image"
-            />
           </div>
           <div className="story-card">
             <h3>Buddy Finds His Way Back</h3>
             <p>
               "Buddy went missing during a thunderstorm, but thanks to Petverse, we found him safe at a local shelter. The alerts helped us connect quickly!" - Emily R.
             </p>
-            <img
-              src="https://via.placeholder.com/200x150?text=Buddy+the+Dog"
-              alt="Buddy the Dog"
-              className="story-image"
-            />
           </div>
         </div>
         <p className="share-story">
@@ -159,8 +137,8 @@ const Pages = () => {
           <div className="event-item">
             <h3>Pet Adoption Fair</h3>
             <p>
-              Date: April 15, 2025<br />
-              Location: Central Park, NYC<br />
+              Date: May 15, 2025<br />
+              Location: Palakkad, PKD<br />
               Meet adoptable pets and learn about the adoption process.
             </p>
           </div>
@@ -168,7 +146,7 @@ const Pages = () => {
             <h3>Pet Safety Workshop</h3>
             <p>
               Date: May 10, 2025<br />
-              Location: Community Center, LA<br />
+              Location: Coimbatore, CBE<br />
               Learn tips to keep your pet safe during emergencies.
             </p>
           </div>
