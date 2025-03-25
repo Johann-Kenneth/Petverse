@@ -160,9 +160,39 @@
   z-index: 1;
 }
 
+/* Navbar.css */
+
+/* ... existing styles ... */
+
+.profile-pic {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 0 auto 10px; /* Center the image and add spacing below */
+  display: block;
+  border: 2px solid #fff; /* Optional: white border for a polished look */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
 .profile-header {
   text-align: center;
-  margin-bottom: 15px;
+  padding: 15px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .profile-pic {
+    width: 70px;
+    height: 70px;
+  }
+}
+
+@media (max-width: 480px) {
+  .profile-pic {
+    width: 60px;
+    height: 60px;
+  }
 }
 
 .profile-pic {

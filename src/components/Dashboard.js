@@ -300,7 +300,7 @@ const Dashboard = () => {
             <p>"The missing pets list helped me reunite with my lost cat!" - James P.</p>
           </div>
           <div className="dash-testimonial-card dash-animate-on-scroll dash-fade-in-delay-3">
-            <p>"Thanks to the vaccination reminders, my pet is always on schedule!" - Emily R.</p>
+            <p>"Thanks to the food recommendation, my pet is always healthy!" - Emily R.</p>
           </div>
         </div>
       </section>

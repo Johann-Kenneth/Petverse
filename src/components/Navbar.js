@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { auth, db } from './firebase';
 import { onAuthStateChanged, signOut } from 'firebase/auth';
-import { doc, getDoc } from 'firebase/firestore';
+import { doc, getDoc,setDoc } from 'firebase/firestore';
 import './Navbar.css';
 
 const Navbar = ({
@@ -43,19 +43,33 @@ const Navbar = ({
     return () => unsubscribe();
   }, []);
 
-  const fetchUserProfile = async (uid) => {
-    try {
-      const docRef = doc(db, 'users', uid);
-      const docSnap = await getDoc(docRef);
-      if (docSnap.exists()) {
-        setUserData(docSnap.data());
-      } else {
-        console.log('No such document!');
-      }
-    } catch (error) {
-      console.error('Error fetching user profile:', error);
+  // Navbar.js
+const fetchUserProfile = async (uid) => {
+  try {
+    const docRef = doc(db, 'users', uid);
+    const docSnap = await getDoc(docRef);
+    if (docSnap.exists()) {
+      setUserData({
+        name: docSnap.data().name || 'No name provided',
+        email: docSnap.data().email || 'No email provided',
+        bio: docSnap.data().bio || '',
+        profilePic: docSnap.data().profilePic || ''
+      });
+    } else {
+      console.log('No user document found. Initializing with default values...');
+      const initialData = {
+        name: auth.currentUser?.displayName || 'No name provided',
+        email: auth.currentUser?.email || 'No email provided',
+        bio: '',
+        profilePic: auth.currentUser?.photoURL || '' // Set to Google profile picture
+      };
+      await setDoc(docRef, initialData);
+      setUserData(initialData);
     }
-  };
+  } catch (error) {
+    console.error('Error fetching user profile:', error);
+  }
+};
 
   const handleLogout = async () => {
     try {
@@ -261,7 +275,7 @@ const Navbar = ({
                 <div className="dropdown-profile">
                   <div className="profile-header">
                     <img
-                      src={userData.photoURL || 'https://via.placeholder.com/80'}
+                      src={userData.profilePic || 'https://via.placeholder.com/80'}
                       alt="Profile"
                       className="profile-pic"
                     />
