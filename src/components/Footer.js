@@ -19,7 +19,7 @@ const Footer = () => {
         </div>
         <div className="footer-section">
           <h4>Contact Us</h4>
-          <p>Email: info@Petverse.com</p>
+          <p>Email: petverse7@gmail.com</p>
           <p>Phone: +91 9745882509</p>
         </div>
       </div>

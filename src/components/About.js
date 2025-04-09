@@ -32,7 +32,7 @@ const About = () => {
         <h2>Our Story</h2>
         <div className="section-content">
           <p>
-            Petverse was founded in 2025 with a heartfelt mission to reunite lost pets with their owners. Our journey began when our team mate, Arshitha, experienced the heartbreak of losing her beloved dog, Luna. After days of searching and posting flyers with no success, Jane realized there was a gap in the pet community—a need for a centralized, technology-driven platform to help pet owners in similar situations.
+            Petverse was founded in 2025 with a heartfelt mission to reunite lost pets with their owners. Our journey began when our team mate, Arshitha, experienced the heartbreak of losing her beloved dog, Luna. After days of searching and posting flyers with no success, Arshitha realized there was a gap in the pet community—a need for a centralized, technology-driven platform to help pet owners in similar situations.
           </p>
           <p>
             Driven by her passion for animals, Arshitha assembled a team of like-minded individuals to create Petverse, a platform that leverages technology to connect pet owners, shelters, and communities. Since its inception, Petverse has grown into a global network, helping thousands of pets find their way back home. We’re more than just a platform; we’re a community built on love, hope, and the shared belief that every pet deserves a happy reunion.

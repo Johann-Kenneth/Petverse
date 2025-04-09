@@ -10,8 +10,9 @@ const Contact = () => {
     message: '',
   });
   const [formStatus, setFormStatus] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const [emailCache, setEmailCache] = useState({});
 
-  // Scroll to the section based on the query parameter
   useEffect(() => {
     const params = new URLSearchParams(location.search);
     const section = params.get('section');
@@ -23,7 +24,6 @@ const Contact = () => {
     }
   }, [location]);
 
-  // Handle form input changes
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
@@ -32,13 +32,80 @@ const Contact = () => {
     }));
   };
 
-  // Handle form submission
-  const handleSubmit = (e) => {
+  const validateEmail = async (email, maxRetries = 3) => {
+    const apiKey = '5de1948291f5446eab7955da36c1df3f';
+    console.log('Validating email:', email, 'with API Key:', apiKey);
+    if (emailCache[email]) return emailCache[email];
+
+    for (let attempt = 1; attempt <= maxRetries; attempt++) {
+      try {
+        const response = await fetch(
+          `https://emailvalidation.abstractapi.com/v1/?api_key=${apiKey}&email=${encodeURIComponent(email)}`
+        );
+        if (!response.ok) {
+          console.log(`Attempt ${attempt} failed with status: ${response.status}`);
+          if (response.status === 429 && attempt < maxRetries) {
+            const retryAfter = response.headers.get('Retry-After') || 5;
+            console.log(`Rate limit hit. Retrying after ${retryAfter} seconds...`);
+            await new Promise((resolve) => setTimeout(resolve, retryAfter * 1000));
+            continue;
+          }
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        const data = await response.json();
+        console.log('Abstract API Full Response:', data);
+        const isValid = data.deliverability === 'DELIVERABLE' ||
+                        (data.is_valid_format && !data.is_disposable_email);
+        setEmailCache((prev) => ({ ...prev, [email]: isValid }));
+        return isValid;
+      } catch (error) {
+        console.error('Email validation error:', error.message);
+        if (attempt === maxRetries) return false;
+      }
+    }
+    return false;
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Simulate form submission (replace with actual API call in production)
-    setFormStatus('Thank you for your message! We’ll get back to you soon.');
-    setFormData({ name: '', email: '', message: '' });
-    setTimeout(() => setFormStatus(''), 5000); // Clear status after 5 seconds
+    setIsLoading(true);
+    setFormStatus('');
+
+    const isEmailValid = await validateEmail(formData.email);
+    if (!isEmailValid) {
+      setFormStatus('Invalid email address. Please use a valid email.');
+      setIsLoading(false);
+      return;
+    }
+
+    const formDataToSend = new FormData();
+    const web3formsAccessKey = 'f52156e4-e240-446a-8e52-846482b1135c';
+    formDataToSend.append('access_key', web3formsAccessKey);
+    formDataToSend.append('name', formData.name);
+    formDataToSend.append('email', formData.email);
+    formDataToSend.append('message', formData.message);
+
+    try {
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        body: formDataToSend,
+      });
+      const data = await response.json();
+
+      if (data.success) {
+        setFormStatus('Thank you for your message! We’ll get back to you soon.');
+        setFormData({ name: '', email: '', message: '' });
+      } else {
+        setFormStatus('Failed to send message. Please try again later.');
+        console.error('Web3Forms error:', data);
+      }
+    } catch (error) {
+      setFormStatus('An error occurred. Please try again later.');
+      console.error('Submission error:', error);
+    } finally {
+      setIsLoading(false);
+      setTimeout(() => setFormStatus(''), 5000);
+    }
   };
 
   return (
@@ -57,7 +124,7 @@ const Contact = () => {
         <div className="contact-info">
           <div className="contact-item">
             <span className="contact-icon">✉️</span>
-            <p><strong>Email:</strong> <a href="mailto:support@petverse.com">support@petverse.com</a></p>
+            <p><strong>Email:</strong> <a href="mailto:support@petverse.com">petverse7@gmail.com</a></p>
           </div>
           <div className="contact-item">
             <span className="contact-icon">📞</span>
@@ -113,7 +180,9 @@ const Contact = () => {
               rows="5"
             />
           </div>
-          <button type="submit" className="form-submit">Send Message</button>
+          <button type="submit" className="form-submit" disabled={isLoading}>
+            {isLoading ? 'Sending...' : 'Send Message'}
+          </button>
           {formStatus && <p className="form-status">{formStatus}</p>}
         </form>
       </section>
@@ -146,13 +215,6 @@ const Contact = () => {
               </li>
             </ul>
           </div>
-          <div className="support-ticket">
-            <h3>Need More Help?</h3>
-            <p>
-              Submit a support ticket, and our team will assist you within 24 hours.
-            </p>
-            <a href="/submit-ticket" className="section-link">Submit a Ticket</a>
-          </div>
         </div>
       </section>
 
@@ -179,12 +241,9 @@ const Contact = () => {
             <p><strong>Phone:</strong> +91 7839478388</p>
           </div>
         </div>
-        <p className="locations-note">
-          Can’t visit in person? We offer virtual consultations! <a href="/schedule-consultation" className="section-link">Schedule a Call</a>
-        </p>
       </section>
 
-      {/* New Section: Social Media */}
+      {/* Social Media Section */}
       <section id="social-media" className="contact-section">
         <h2>Connect With Us</h2>
         <p>

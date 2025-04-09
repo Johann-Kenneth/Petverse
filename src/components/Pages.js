@@ -69,9 +69,6 @@ const Pages = () => {
             </p>
           </div>
         </div>
-        <p className="share-story">
-          Have a success story to share? <a href="/share-story" className="section-link">Tell Us Your Story</a>
-        </p>
       </section>
 
       {/* Resources Section */}
@@ -86,28 +83,24 @@ const Pages = () => {
             <p>
               Learn practical steps like securing your yard, using a leash in public, and ensuring your pet has proper identification tags.
             </p>
-            <a href="/resources/prevent-lost-pets" className="resource-link">Read More</a>
           </div>
           <div className="resource-item">
             <h3>What to Do If Your Pet Goes Missing</h3>
             <p>
               Follow our step-by-step guide: notify local shelters, post on Petverse, and create flyers to spread the word.
             </p>
-            <a href="/resources/if-pet-missing" className="resource-link">Read More</a>
           </div>
           <div className="resource-item">
             <h3>Microchipping Your Pet: A Guide</h3>
             <p>
               Understand the benefits of microchipping, how it works, and how to register your pet’s microchip for quick recovery.
             </p>
-            <a href="/resources/microchipping-guide" className="resource-link">Read More</a>
           </div>
           <div className="resource-item">
             <h3>Training Tips for Pet Safety</h3>
             <p>
               Teach your pet basic commands like "stay" and "come" to prevent them from wandering off in dangerous situations.
             </p>
-            <a href="/resources/pet-safety-training" className="resource-link">Read More</a>
           </div>
         </div>
       </section>
@@ -124,7 +117,6 @@ const Pages = () => {
           <li><strong>Exercise Needs:</strong> Ensure your pet gets enough physical activity to stay fit.</li>
           <li><strong>Mental Stimulation:</strong> Use toys and games to keep your pet’s mind active.</li>
         </ul>
-        <a href="/pet-care-tips" className="section-link">Explore More Pet Care Tips</a>
       </section>
 
       {/* New Section: Community Events */}
@@ -151,7 +143,6 @@ const Pages = () => {
             </p>
           </div>
         </div>
-        <a href="/events" className="section-link">View All Events</a>
       </section>
 
       {/* Call to Action */}
